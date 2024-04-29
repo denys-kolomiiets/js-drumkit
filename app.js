@@ -15,7 +15,12 @@ const playDrum = (event) => {
   event.preventDefault();
   if (event.target.classList.contains("pad")) {
     let soundToPlay = event.target.dataset.sound;
+    let pad = event.target;
+    pad.classList.add("playing");
     drums.play(soundToPlay);
+    drums.once("end", () => {
+      pad.classList.remove("playing");
+    });
   }
 };
 
